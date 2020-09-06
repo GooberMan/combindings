@@ -1,0 +1,11 @@
+**/.vs
+**/.vs/**
+**/lib
+**/lib/**
+**/obj
+**/obj/**
+*.opendb
+*.sdf
+*.suo
+*.user
+*.VC.db
