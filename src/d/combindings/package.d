@@ -8,5 +8,6 @@ public import core.sys.windows.oaidl;
 public import core.sys.windows.ocidl;
 
 public import combindings.attributes;
+public import combindings.comptr;
 public import combindings.glue;
 public import combindings.util;

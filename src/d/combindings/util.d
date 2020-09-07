@@ -8,13 +8,15 @@ import combindings.attributes;
 
 // Basic COM object helpers
 
-void ReleaseAndNull( T : IUnknown )( ref T Obj )
+pragma( inline, true ) ULONG ReleaseAndNull( T : IUnknown )( ref T Obj )
 {
+	ULONG refcount;
 	if( Obj !is null )
 	{
-		Obj.Release();
+		refcount = Obj.Release();
 		Obj = null;
 	}
+	return refcount;
 }
 
 IID IIDOf( T : IUnknown )() pure @safe nothrow
@@ -84,7 +86,7 @@ auto IIDPtrOf( T : IUnknown )( ref T ObjPtr ) pure @safe nothrow
 }
 
 // Wrappers for IUnknown and IClassFactory
-HRESULT QueryInterface( T : IUnknown, I : IUnknown )( ref T OutputObj )
+HRESULT QueryInterface( T : IUnknown, I : IUnknown )( I ThisObj, ref T OutputObj )
 {
 	return ThisObj.QueryInterface( IIDPtrOf!T, cast(void**)&QueryObj );
 }
